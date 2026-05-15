@@ -36,5 +36,6 @@ meson setup .. "build-android" \
             -Dopengl=true \
             -Degl-lib-suffix=_mesa \
             -Dandroid-libbacktrace=disabled \
+            -Dvulkan-drivers= \
 	    -Dallow-fallback-for=libdrm ${EXTRA_ARGS}
 ninja -C "build-android" install

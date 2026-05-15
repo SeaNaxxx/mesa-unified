@@ -32,7 +32,7 @@ meson setup .. "build-android" \
             -Dgbm=disabled \
             -Dglx=disabled \
             -Dgles1=disabled \
-            -Dgles2=enabled \
+            -Dgles2=disabled \
             -Dopengl=true \
             -Degl-lib-suffix=_mesa \
             -Dandroid-libbacktrace=disabled \

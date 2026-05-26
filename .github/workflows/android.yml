@@ -25,6 +25,7 @@ jobs:
       run: |
         echo "Building on: ${{ matrix.arch }}"
         export MATRIX_ARCH="${{ matrix.arch }}"
+        export ANDROID_NDK_HOME=
         pushd build-android
         bash ./build_${{ matrix.arch }}.sh
         popd

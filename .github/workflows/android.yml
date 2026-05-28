@@ -28,11 +28,12 @@ jobs:
         export ANDROID_NDK_HOME=
         pushd build-android
         bash ./build_${{ matrix.arch }}.sh
+        bash ./build_${{ matrix.arch }}.sh turnip
         popd
 
     - name: Compress artifacts
       run: |
-        pushd /tmp/zink-${{matrix.arch}}/lib && zip -j "$OLDPWD/mesa-${{matrix.arch}}.zip" libEGL_mesa.so libgallium_dri.so libdrm.so || true; popd
+        pushd /tmp/zink-${{matrix.arch}}/lib && zip -j "$OLDPWD/mesa-${{matrix.arch}}.zip" libEGL_mesa.so libgallium_dri.so libdrm.so libvulkan_freedreno.so || true; popd
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:

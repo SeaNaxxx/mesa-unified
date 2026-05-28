@@ -23,7 +23,7 @@ meson setup .. "build-android" \
         --prefix=/tmp/zink-${MATRIX_ARCH} \
         --cross-file "build-crossfile" \
             -Dplatforms=android \
-	    -Dbuildtype=debug \
+	    -Dbuildtype=release \
 	    -Dstrip=false \
             -Dplatform-sdk-version=29 \
             -Dandroid-stub=true \

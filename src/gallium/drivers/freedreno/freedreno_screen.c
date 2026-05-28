@@ -277,8 +277,8 @@ fd_init_shader_caps(struct fd_screen *screen)
          !FD_DBG(NOFP16);
       caps->glsl_16bit_load_dst = true;
 
-      caps->max_texture_samplers =
-      caps->max_sampler_views = 16;
+      caps->max_texture_samplers = 32;
+      caps->max_sampler_views = 32;
 
       caps->supported_irs =
          (1 << PIPE_SHADER_IR_NIR) |

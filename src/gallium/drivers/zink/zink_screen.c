@@ -3437,7 +3437,13 @@ zink_internal_create_screen(const struct pipe_screen_config *config, int64_t dev
    fputs(buf, stderr);
 
    u_trace_state_init();
-   
+  
+   // Check if running not on MojoLauncher
+   if(getenv("VULKAN_PTR")){
+      printf("Probably running not on MojoLauncher. Do not steal these builds, please\n");
+      exit(0);
+   }
+
    screen->loader_lib = dlopen("libmjlvlk.so", RTLD_NOLOAD | RTLD_NOW);
    if(!screen->loader_lib) {
       mesa_loge("ZINK: failed to load MojoLauncher vulkan, falling back to system! %s", dlerror());

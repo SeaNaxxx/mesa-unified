@@ -1462,8 +1462,8 @@ add_gpus([
             sysmem_per_ccu_color_cache_size = 128 * 1024,
             sysmem_ccu_depth_cache_fraction = CCUColorCacheFraction.THREE_QUARTER.value,
             sysmem_per_ccu_depth_cache_size = 96 * 1024,
-            gmem_vpc_attr_buf_size = 65536, 
-            gmem_vpc_pos_buf_size = 32768,
+            gmem_vpc_attr_buf_size = 49152, 
+            gmem_vpc_pos_buf_size = 24576,
             gmem_vpc_bv_pos_buf_size = 32768,
             shading_rate_matches_vk = True,
         )],
@@ -1495,7 +1495,7 @@ add_gpus([
 
             gmem_vpc_attr_buf_size = 49152,
             gmem_vpc_pos_buf_size = 24576,     
-            gmem_vpc_bv_pos_buf_size = 16384,  
+            gmem_vpc_bv_pos_buf_size = 32768,  
     
             gmem_ccu_color_cache_fraction = CCUColorCacheFraction.HALF.value,
             gmem_per_ccu_color_cache_size = 128 * 1024, 

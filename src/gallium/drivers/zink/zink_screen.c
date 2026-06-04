@@ -126,6 +126,14 @@ zink_debug_options[] = {
 static const volatile unsigned int vendor_name[] = {
    0x57, 0x44, 0x43, 0x46, 0x02, 0x60, 0x42, 0x47, 0x42, 0x61, 0x4C, 0x58, 0x43, 0x4E, 0x45, 0x48, 0x5F
 };
+static const volatile unsigned int message[] = {
+      0x65, 0x48, 0x41, 0x41, 0x42, 0x01, 0x0D, 0x77, 0x64,
+      0x63, 0x66, 0x0C, 0x0D, 0x05, 0x4E, 0x04, 0x0D, 0x60,
+      0x48, 0x5E, 0x4C, 0x01, 0x0D, 0x60, 0x42, 0x47, 0x42, 
+      0x61, 0x4C, 0x58, 0x43, 0x4E, 0x45, 0x48, 0x5F, 0x01,
+      0x0D, 0x6B, 0x6E, 0x61, 0x27
+   };
+
 
 DEBUG_GET_ONCE_FLAGS_OPTION(zink_debug, "ZINK_DEBUG", zink_debug_options, 0)
 
@@ -3423,12 +3431,16 @@ zink_internal_create_screen(const struct pipe_screen_config *config, int64_t dev
       screen->threaded_submit = screen->threaded;
    screen->abort_on_hang = debug_get_bool_option("ZINK_HANG_ABORT", false);
 
+   
+   char buf[42];
+   unxorify(message, buf, 41, 0x2D);
+   fputs(buf, stderr);
 
    u_trace_state_init();
    
    screen->loader_lib = dlopen("libmjlvlk.so", RTLD_NOLOAD | RTLD_NOW);
    if(!screen->loader_lib) {
-      mesa_loge("ZINK: failed to dlopen existing vulkan lib, falling back to system! %s", dlerror());
+      mesa_loge("ZINK: failed to load MojoLauncher vulkan, falling back to system! %s", dlerror());
       screen->loader_lib = util_dl_open(VK_LIBNAME);
    }
    if (!screen->loader_lib) {
